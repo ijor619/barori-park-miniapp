@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#10131a">
+  <meta name="description" content="Демонстрационный личный кабинет курьера Барори Парк">
+  <title>Барори Парк</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Личный кабинет</p>
+        <h1>Барори Парк</h1>
+      </div>
+      <div class="status-pill" aria-label="Статус: демо-режим">
+        <span class="status-dot"></span> Демо
+      </div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <section class="view is-active" data-view="home" aria-labelledby="home-title">
+        <div class="hero-card">
+          <div class="hero-copy">
+            <p class="card-kicker">Баланс Яндекс Про</p>
+            <h2 id="home-title">8 450 ₽</h2>
+            <p class="muted">Демонстрационные данные</p>
+          </div>
+          <div class="hero-icon" aria-hidden="true">₽</div>
+        </div>
+
+        <div class="period-switcher" role="group" aria-label="Период статистики">
+          <button class="period-button is-active" type="button" data-period="today">Сегодня</button>
+          <button class="period-button" type="button" data-period="week">Неделя</button>
+          <button class="period-button" type="button" data-period="month">Месяц</button>
+        </div>
+
+        <div class="stats-grid" aria-live="polite">
+          <article class="stat-card">
+            <p>Заработано</p>
+            <strong id="earnings">3 650 ₽</strong>
+          </article>
+          <article class="stat-card">
+            <p>Выполнено заказов</p>
+            <strong id="orders-count">12</strong>
+          </article>
+          <article class="stat-card wide">
+            <div>
+              <p>На линии</p>
+              <strong id="online-time">6 ч 20 мин</strong>
+            </div>
+            <span class="trend" id="trend">+8% к вчера</span>
+          </article>
+        </div>
+
+        <button class="bonus-preview" type="button" data-open-view="bonus">
+          <span class="bonus-mark" aria-hidden="true">B</span>
+          <span class="bonus-copy">
+            <small>Барори Бонус</small>
+            <strong>520 ₽</strong>
+            <span>До следующей награды — 3 заказа</span>
+          </span>
+          <span aria-hidden="true">›</span>
+        </button>
+      </section>
+
+      <section class="view" data-view="orders" aria-labelledby="orders-title" hidden>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">История</p>
+            <h2 id="orders-title">Заказы</h2>
+          </div>
+          <span class="count-badge">3 демо</span>
+        </div>
+        <div class="order-list">
+          <button class="order-card" type="button" data-order="BP-1042">
+            <span class="order-icon">✓</span>
+            <span class="order-info"><strong>Заказ BP-1042</strong><small>Сегодня, 18:42 · Доставка</small></span>
+            <span class="order-price">540 ₽<small>Выполнен</small></span>
+          </button>
+          <button class="order-card" type="button" data-order="BP-1038">
+            <span class="order-icon">✓</span>
+            <span class="order-info"><strong>Заказ BP-1038</strong><small>Сегодня, 16:10 · Доставка</small></span>
+            <span class="order-price">410 ₽<small>Выполнен</small></span>
+          </button>
+          <button class="order-card" type="button" data-order="BP-1029">
+            <span class="order-icon">✓</span>
+            <span class="order-info"><strong>Заказ BP-1029</strong><small>Сегодня, 13:27 · Доставка</small></span>
+            <span class="order-price">620 ₽<small>Выполнен</small></span>
+          </button>
+        </div>
+        <div class="notice-card">
+          <strong>Без реальных адресов</strong>
+          <p>В этой версии используются только вымышленные номера и суммы.</p>
+        </div>
+      </section>
+
+      <section class="view" data-view="bonus" aria-labelledby="bonus-title" hidden>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Программа лояльности</p>
+            <h2 id="bonus-title">Барори Бонус</h2>
+          </div>
+        </div>
+        <div class="bonus-balance">
+          <p>Доступно бонусов</p>
+          <strong>520 ₽</strong>
+          <div class="progress-track"><span style="width: 70%"></span></div>
+          <small>7 из 10 заказов до награды 300 ₽</small>
+        </div>
+        <div class="mission-list">
+          <article class="mission-card">
+            <span class="mission-icon">🎯</span>
+            <div><strong>Серия заказов</strong><p>Выполните ещё 3 заказа</p></div>
+            <span class="reward">+300 ₽</span>
+          </article>
+          <article class="mission-card">
+            <span class="mission-icon">⭐</span>
+            <div><strong>Высокий рейтинг</strong><p>Держите рейтинг выше 4,8</p></div>
+            <span class="reward">+100 ₽</span>
+          </article>
+        </div>
+        <button class="primary-button" type="button" id="bonus-rules">Правила программы</button>
+      </section>
+
+      <section class="view" data-view="profile" aria-labelledby="profile-title" hidden>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Настройки</p>
+            <h2 id="profile-title">Профиль</h2>
+          </div>
+        </div>
+        <div class="profile-card">
+          <div class="avatar">ТК</div>
+          <div><strong id="profile-name">Тестовый курьер</strong><p>Демо-профиль · ID DEMO-001</p></div>
+        </div>
+        <div class="menu-list">
+          <button type="button" data-action="notifications"><span>Уведомления</span><strong id="notifications-state">Включены</strong></button>
+          <button type="button" data-action="theme"><span>Оформление</span><strong id="theme-state">Системное</strong></button>
+          <button type="button" data-action="support"><span>Поддержка</span><strong>Написать</strong></button>
+          <button type="button" data-action="about"><span>О приложении</span><strong>v1.2</strong></button>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Основная навигация">
+      <button type="button" class="nav-button is-active" data-target="home" aria-current="page"><span>⌂</span><small>Главная</small></button>
+      <button type="button" class="nav-button" data-target="orders"><span>▤</span><small>Заказы</small></button>
+      <button type="button" class="nav-button" data-target="bonus"><span>★</span><small>Бонусы</small></button>
+      <button type="button" class="nav-button" data-target="profile"><span>●</span><small>Профиль</small></button>
+    </nav>
+  </div>
+
+  <div class="sheet-backdrop" id="sheet-backdrop" hidden></div>
+  <section class="bottom-sheet" id="bottom-sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" hidden>
+    <div class="sheet-handle"></div>
+    <div id="sheet-content"></div>
+    <button class="primary-button" type="button" id="sheet-close">Понятно</button>
+  </section>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script src="app.js"></script>
+</body>
+</html>
