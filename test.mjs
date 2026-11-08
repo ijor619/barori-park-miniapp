@@ -24,6 +24,10 @@ assert.match(js, /label: '250\+'/, 'missing 250+ bonus tier');
 assert.match(js, /percent: 0\.5/, 'missing 0.5% bonus rate');
 assert.match(js, /percent: 3/, 'missing 3% bonus rate');
 assert.match(js, /Math\.min\(current\.percent, parkCommissionPercent\)/, 'cashback must be capped by park commission');
+assert.match(js, /eligibleEarnings: 84300/, 'missing eligible cashback base');
+assert.match(js, /Math\.round\(eligibleEarnings \* effectivePercent\) \/ 100/, 'cashback amount must be calculated from the eligible base');
+assert.match(html, /v1\.3/, 'visible application version must be v1.3');
+assert.doesNotMatch(html, /520 ₽/, 'old hardcoded cashback amount must be removed');
 assert.doesNotMatch(`${html}\n${css}\n${js}`, /\b\d{10,16}\b|bot\d*:[A-Za-z0-9_-]{20,}/i, 'possible real phone or bot token');
 assert.doesNotMatch(`${html}\n${js}`, /(?:улица|ул\.|проспект|дом\s+\d+)/i, 'possible real address');
 
