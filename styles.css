@@ -61,9 +61,20 @@ button:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 75%, 
 .bonus-balance { padding: 24px; border-radius: 26px; background: linear-gradient(145deg, #6b4bcc, #342468); }
 .bonus-balance p { margin: 0; color: rgba(255,255,255,.65); }
 .bonus-balance strong { display: block; margin: 8px 0 18px; font-size: 40px; }
+.bonus-level-row { display: flex; align-items: center; justify-content: space-between; margin: 0 0 10px; color: rgba(255,255,255,.7); font-size: 13px; }
+.bonus-level-row b { color: #abffca; font-size: 18px; }
 .progress-track { height: 8px; border-radius: 99px; overflow: hidden; background: rgba(255,255,255,.14); }
 .progress-track span { display: block; height: 100%; border-radius: inherit; background: #abffca; }
 .bonus-balance small { display: block; margin-top: 9px; color: rgba(255,255,255,.68); }
+.tier-card { margin-top: 14px; padding: 18px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.tier-heading { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.tier-heading span { color: var(--muted); font-size: 12px; }
+.tier-list { display: grid; gap: 6px; }
+.tier-row { display: flex; justify-content: space-between; padding: 10px 12px; border-radius: 12px; color: var(--muted); font-size: 13px; }
+.tier-row strong { color: var(--text); }
+.tier-row.is-current { background: rgba(120,240,167,.12); color: var(--text); }
+.tier-row.is-current strong { color: var(--accent); }
+.bonus-notice { margin-bottom: 14px; }
 .mission-list { display: grid; gap: 10px; margin: 14px 0; }
 .mission-card { display: grid; grid-template-columns: 40px 1fr auto; align-items: center; gap: 12px; padding: 16px; border: 1px solid var(--line); border-radius: 19px; background: var(--surface); }
 .mission-icon { font-size: 25px; }
