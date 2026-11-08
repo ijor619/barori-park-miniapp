@@ -16,6 +16,14 @@ for (const period of ['today', 'week', 'month']) {
 assert.match(html, /telegram\.org\/js\/telegram-web-app\.js/);
 assert.match(js, /telegram\.ready\(\)/);
 assert.match(js, /telegram\.expand\(\)/);
+assert.match(js, /label: '0–99'/, 'missing 0–99 bonus tier');
+assert.match(js, /label: '100–149'/, 'missing 100–149 bonus tier');
+assert.match(js, /label: '150–199'/, 'missing 150–199 bonus tier');
+assert.match(js, /label: '200–249'/, 'missing 200–249 bonus tier');
+assert.match(js, /label: '250\+'/, 'missing 250+ bonus tier');
+assert.match(js, /percent: 0\.5/, 'missing 0.5% bonus rate');
+assert.match(js, /percent: 3/, 'missing 3% bonus rate');
+assert.match(js, /Math\.min\(current\.percent, parkCommissionPercent\)/, 'cashback must be capped by park commission');
 assert.doesNotMatch(`${html}\n${css}\n${js}`, /\b\d{10,16}\b|bot\d*:[A-Za-z0-9_-]{20,}/i, 'possible real phone or bot token');
 assert.doesNotMatch(`${html}\n${js}`, /(?:улица|ул\.|проспект|дом\s+\d+)/i, 'possible real address');
 
