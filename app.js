@@ -21,6 +21,7 @@
 
   const bonusProgram = {
     completedOrders: 223,
+    eligibleEarnings: 84300,
     parkCommissionPercent: 3,
     tiers: [
       { min: 0, max: 99, percent: 0, label: '0–99' },
@@ -92,15 +93,23 @@
     return String(value).replace('.', ',') + '%';
   }
 
+  function formatMoney(value) {
+    return new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 2 }).format(value) + ' ₽';
+  }
+
   function renderBonusProgram() {
-    const { completedOrders, parkCommissionPercent, tiers } = bonusProgram;
+    const { completedOrders, eligibleEarnings, parkCommissionPercent, tiers } = bonusProgram;
     const currentIndex = tiers.findIndex((tier) => completedOrders >= tier.min && completedOrders <= tier.max);
     const current = tiers[currentIndex];
     const effectivePercent = Math.min(current.percent, parkCommissionPercent);
+    const cashbackAmount = Math.round(eligibleEarnings * effectivePercent) / 100;
     const next = tiers[currentIndex + 1];
     const remaining = next ? Math.max(0, next.min - completedOrders) : 0;
     const progress = Math.min(100, (completedOrders / tiers[tiers.length - 1].min) * 100);
 
+    document.getElementById('bonus-amount').textContent = formatMoney(cashbackAmount);
+    document.getElementById('bonus-preview-amount').textContent = formatMoney(cashbackAmount);
+    document.getElementById('bonus-base').textContent = formatMoney(eligibleEarnings);
     document.getElementById('bonus-percent').textContent = formatPercent(effectivePercent);
     document.getElementById('bonus-progress-bar').style.width = progress + '%';
     document.getElementById('bonus-next-level').textContent = next
@@ -131,7 +140,7 @@
 
   document.getElementById('bonus-rules').addEventListener('click', () => openSheet(
     'Правила программы',
-    '<p>Учитываются только завершённые заказы за календарный месяц. Уровни: 100 заказов — 0,5%, 150 — 1%, 200 — 2%, 250 — 3%.</p><p>Кэшбэк не может превышать фактическую комиссию парка. Начисление фиксируется после окончания месяца и доступно для вывода 7 дней.</p><p>Сейчас показаны только демонстрационные данные: реальные выплаты не выполняются.</p>'
+    '<p>Кэшбэк рассчитывается от суммы завершённых заказов, с которой парк фактически получает комиссию. Чаевые, компенсации и выплаты без комиссии в базу не входят.</p><p>Уровни: 100 заказов — 0,5%, 150 — 1%, 200 — 2%, 250 — 3%. Процент не может превышать фактическую комиссию парка.</p><p>Начисление фиксируется после окончания месяца и доступно для вывода 7 дней. Сейчас показаны демонстрационные данные: реальные выплаты не выполняются.</p>'
   ));
 
   document.querySelector('[data-action="notifications"]').addEventListener('click', () => {
@@ -156,7 +165,7 @@
   ));
 
   document.querySelector('[data-action="about"]').addEventListener('click', () => openSheet(
-    'Барори Парк v1.2',
+    'Барори Парк v1.3',
     '<p>Демонстрационная Telegram Mini App. Не подключена к Яндексу, CRM или платёжным системам.</p>'
   ));
 
