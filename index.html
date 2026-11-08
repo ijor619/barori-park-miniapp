@@ -61,7 +61,7 @@
           <span class="bonus-copy">
             <small>Барори Бонус</small>
             <strong>520 ₽</strong>
-            <span>До следующей награды — 3 заказа</span>
+            <span id="bonus-preview-progress">2% · ещё 27 заказов до 3%</span>
           </span>
           <span aria-hidden="true">›</span>
         </button>
@@ -106,22 +106,25 @@
           </div>
         </div>
         <div class="bonus-balance">
-          <p>Доступно бонусов</p>
+          <p>Предварительно начислено</p>
           <strong>520 ₽</strong>
-          <div class="progress-track"><span style="width: 70%"></span></div>
-          <small>7 из 10 заказов до награды 300 ₽</small>
+          <div class="bonus-level-row">
+            <span>Текущий кэшбэк</span>
+            <b id="bonus-percent">2%</b>
+          </div>
+          <div class="progress-track"><span id="bonus-progress-bar" style="width: 89.2%"></span></div>
+          <small id="bonus-next-level">223 заказа · ещё 27 до максимальных 3%</small>
         </div>
-        <div class="mission-list">
-          <article class="mission-card">
-            <span class="mission-icon">🎯</span>
-            <div><strong>Серия заказов</strong><p>Выполните ещё 3 заказа</p></div>
-            <span class="reward">+300 ₽</span>
-          </article>
-          <article class="mission-card">
-            <span class="mission-icon">⭐</span>
-            <div><strong>Высокий рейтинг</strong><p>Держите рейтинг выше 4,8</p></div>
-            <span class="reward">+100 ₽</span>
-          </article>
+        <div class="tier-card">
+          <div class="tier-heading">
+            <strong>Уровни за месяц</strong>
+            <span>Ноябрь · демо</span>
+          </div>
+          <div class="tier-list" id="bonus-tiers" aria-label="Уровни кэшбэка"></div>
+        </div>
+        <div class="notice-card bonus-notice">
+          <strong>Окно вывода — 7 дней</strong>
+          <p>Кэшбэк фиксируется после завершения месяца. Процент не может быть выше фактической комиссии парка.</p>
         </div>
         <button class="primary-button" type="button" id="bonus-rules">Правила программы</button>
       </section>
